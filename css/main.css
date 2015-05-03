@@ -1,6 +1,7 @@
 .row {
 	margin-top: 40px;
+	max-width: 30px;
 }
 body {
-    background-color: #b0c4de;
+    background-color: #FFFFB2;
 }
