@@ -94,10 +94,16 @@
       <a href="#" class="list-group-item">suhailazmin96@gmail.com</a>
   </div>
   <div class='form-container'>
-    <input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='placeInput' placeholder='Address'>
+    <div class="form-group">
+      <label for="nameInput">Name</label>
+      <input type='text' id='nameInput' class="form-control" placeholder='Enter Name'>    </div>
+    <div class="form-group">
+      <label for="placeInput">Address</label>
+      <input type='text' id='placeInput' class= "form-control" placeholder='Insert Address'>
+    </div>
+    <button type="button" onclick="saveUser()" class="btn btn-primary">Save</button>
   </div>
-  <table class='users-table table'>
+  <table class='table users-table table-bordered table-striped'>
     <thead>
     <tr>
         <th>Name</th>
@@ -106,7 +112,7 @@
     </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
   </table>
 
@@ -122,9 +128,15 @@
         if (e.keyCode == 13) {
           var name = $('#nameInput').val();
           var place = $('#placeInput').val();
+
+          if(name === '' || place === '') {
+            alert('blank'); 
+              return;
+          }
+          
           myDataRef.push({name: name, address: place});
-          //myDataRef.push({name: name, address: place});
-          $('#messageInput').val('');
+          $('#nameInput').val('');
+          $('#placeInput').val('');
         }
          });
       myDataRef.on('child_added', function(snapshot) {
@@ -132,6 +144,19 @@
         //displayChatMessage(message.name, message.address);
         addUserToTable(message.name, message.address);
       });
+      function saveUser() {
+          
+          var name = $('#nameInput').val();
+          var place = $('#placeInput').val();
+          
+          if(name === '' || place === '') {
+            alert('blank'); 
+              return;
+          }
+          
+          myDataRef.push({name: name, address: place});
+          $('#Input').val('');
+      }
       function addUserToTable(name, address) {
           var $table = $('.users-table');
           var tr = $('<tr></tr>');
