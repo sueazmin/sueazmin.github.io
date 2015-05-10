@@ -19,6 +19,13 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- include firebase library -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <!-- include jquery library -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+    
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -86,6 +93,22 @@
       <a href="#" class="list-group-item">Facebook/Suhail Azmin</a>
       <a href="#" class="list-group-item">suhailazmin96@gmail.com</a>
   </div>
+  <div class='form-container'>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='placeInput' placeholder='Address'>
+  </div>
+  <table class='users-table table'>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
 
 
     <!-- Bootstrap core JavaScript
@@ -93,6 +116,32 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    var myDataRef = new Firebase('https://radiant-inferno-9152.firebaseio.com/users');
+    $('#placeInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var place = $('#placeInput').val();
+          myDataRef.push({name: name, address: place});
+          //myDataRef.push({name: name, address: place});
+          $('#messageInput').val('');
+        }
+         });
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        //displayChatMessage(message.name, message.address);
+        addUserToTable(message.name, message.address);
+      });
+      function addUserToTable(name, address) {
+          var $table = $('.users-table');
+          var tr = $('<tr></tr>');
+          tr.append('<td>' + name + '</td>');
+          tr.append('<td>' + address + '</td>');
+          tr.append('<td>TBA</td>');
+          
+          $table.append(tr);
+      }
+    </script>
   
 
 </body></html>
