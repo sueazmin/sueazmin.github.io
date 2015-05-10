@@ -123,22 +123,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-    var myDataRef = new Firebase('https://radiant-inferno-9152.firebaseio.com/users');
-    $('#placeInput').keypress(function (e) {
+      var myDataRef = new Firebase('https://radiant-inferno-9152.firebaseio.com/users');
+      $('#nameInput').keypress(function (e) {
         if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var place = $('#placeInput').val();
-
-          if(name === '' || place === '') {
-            alert('blank'); 
-              return;
-          }
-          
-          myDataRef.push({name: name, address: place});
-          $('#nameInput').val('');
-          $('#placeInput').val('');
+          saveUser();
         }
-         });
+      });
+
+      $('#placeInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          saveUser();
+        }
+      });
+
       myDataRef.on('child_added', function(snapshot) {
         var message = snapshot.val();
         //displayChatMessage(message.name, message.address);
@@ -151,11 +148,17 @@
           
           if(name === '' || place === '') {
             alert('blank'); 
+            clearInput();
               return;
           }
           
           myDataRef.push({name: name, address: place});
-          $('#Input').val('');
+          clearInput();
+      }
+
+      function clearInput() {
+        $('#nameInput').val('');
+        $('#placeInput').val('');
       }
       function addUserToTable(name, address) {
           var $table = $('.users-table');
