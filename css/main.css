@@ -7,7 +7,7 @@ h1{
 h1 small{
 	 color: #EACE0F;
 }
-body {
+.first-bd{
 	background-image: url("https://scontent-sjc.xx.fbcdn.net/hphotos-xaf1/t31.0-8/11101076_1587770751500161_4539068472630691637_o.jpg");
 	background-size: cover; 
     padding-bottom: 70px;
