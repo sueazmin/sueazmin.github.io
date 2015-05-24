@@ -14,11 +14,7 @@ h1 small{
 }
 .first-bd{
   background: url('http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg') no-repeat 20% 20% fixed; 
-  background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
-    padding-bottom: 70px;
+  
 }
 .contact-bd{
 	margin: 77px;
