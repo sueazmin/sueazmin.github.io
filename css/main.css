@@ -13,8 +13,11 @@ h1 small{
   padding: 15px 15px;
 }
 .first-bd{
-	background-image: url("https://scontent-sjc.xx.fbcdn.net/hphotos-xaf1/t31.0-8/11101076_1587770751500161_4539068472630691637_o.jpg");
-	background-size: cover; 
+  background: url('http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg') no-repeat 20% 20% fixed; 
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
     padding-bottom: 70px;
 }
 .contact-bd{
